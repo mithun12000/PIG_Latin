@@ -17,7 +17,7 @@ only_state = FILTER only_state_join
 
 only_state_projected =
 	FOREACH only_state
-	GENERATE only_state::state::name AS state_name;
+	GENERATE state_including_county::state::name AS state_name;
 	
 only_state_ordered =
 	ORDER only_state_projected
