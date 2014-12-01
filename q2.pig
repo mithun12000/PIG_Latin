@@ -1,9 +1,4 @@
 RUN /vol/automed/data/uscensus1990/load_tables.pig
-
-SELECT state.name,sum(county.population) AS population,sum(county.land_area) AS land_area
-FROM state JOIN county ON state.code = county.state_code
-GROUP BY state.name
-ORDER BY state.name;
 		 
 state_and_county = 
 	JOIN state BY code ,
