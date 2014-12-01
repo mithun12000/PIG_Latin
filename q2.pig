@@ -18,4 +18,4 @@ state_and_county_ordered =
 	ORDER state_and_county_projection
 	BY state_name;
 	
-STORE only_state_ordered INTO 'q2' USING PigStorage(',');
+STORE state_and_county_ordered INTO 'q2' USING PigStorage(',');
