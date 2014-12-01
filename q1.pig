@@ -1,4 +1,4 @@
-RUN /vol/automated/data/uscensus1990/load_tables.pig
+RUN /vol/automed/data/uscensus1990/load_tables.pig
 
 state_including_county = 
 	JOIN state BY code LEFT OUTER,
