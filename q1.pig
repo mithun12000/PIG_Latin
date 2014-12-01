@@ -8,10 +8,10 @@ state_and_county =
 	JOIN state BY code ,
 		 county BY state_code;
 		 
-only_state =
-	x = JOIN state_including_county BY state_including_county.code LEFT OUTER,
-			state_and_county BY state_and_county.code;
-			FILTER x BY state_and_county.code IS NULL;
+only_state_join = JOIN state_including_county BY state_including_county.code LEFT OUTER,
+					state_and_county BY state_and_county.code;
+			
+only_state = FILTER only_state_join BY state_and_county.code IS NULL;
 			
 
 only_state_projected =
