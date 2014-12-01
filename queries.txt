@@ -1,0 +1,53 @@
+SELECT name
+FROM((SELECT state.name FROM (state LEFT OUTER JOIN county ON state.code = county.state_code))
+	  EXCEPT
+	 (SELECT state.name FROM (state JOIN county ON state.code = county.state_code))) as T1
+ORDER BY name;
+	 
+	 
+SELECT state.name,sum(county.population) AS population,sum(county.land_area) AS land_area
+FROM state JOIN county ON state.code = county.state_code
+GROUP BY state.name
+ORDER BY state.name;
+
+SELECT T3.name,no_city,no_town,no_village
+FROM ((SELECT state.code,state.name,count(state.code) AS no_city
+		FROM (state JOIN place ON state.code = place.state_code)
+		WHERE place.type = 'city'
+		GROUP BY state.code,state.name) AS T1 JOIN
+		
+	 (SELECT state.code,state.name,count(state.code) AS no_town
+		FROM (state JOIN place ON state.code = place.state_code)
+		WHERE place.type = 'town'
+		GROUP BY state.code,state.name) AS T2 ON T1.code = T2.code) JOIN
+		
+	 (SELECT state.code,state.name,count(state.code) AS no_village
+		FROM (state JOIN place ON state.code = place.state_code)
+		WHERE place.type = 'village'
+		GROUP BY state.code,state.name) AS T3 ON T2.code = T3.code
+		
+ORDER BY T3.name;
+		
+		
+SELECT T1.state_name,T1.place_name,T1.population
+FROM (SELECT state.name AS state_name,place.name AS place_name,place.population AS population,
+RANK() over(partition by state.name order by place.population desc) AS RANK
+FROM state JOIN place ON state.code = place.state_code
+WHERE place.type = 'city'
+) AS T1
+WHERE RANK <= 5
+ORDER BY T1.state_name;
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
