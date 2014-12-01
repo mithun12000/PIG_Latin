@@ -12,7 +12,7 @@ only_state_join = JOIN state_including_county BY state_including_county.code LEF
 					state_and_county BY state_and_county.code;
 			
 only_state = FILTER only_state_join 
-			 BY state_and_county.code IS NULL;
+			 BY state_and_county::code IS NULL;
 			
 
 only_state_projected =
