@@ -10,7 +10,7 @@ state_and_place_city_group =
 
 state_and_place_city_projection =
 	FOREACH state_and_place_city_group
-	GENERATE group.code AS state_code,
+	GENERATE group AS state_code,
 	COUNT(state_and_place_city.state::code) AS no_city;
 	
 STORE state_and_place_city_projection INTO 'q3' USING PigStorage(',');
