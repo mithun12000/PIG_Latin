@@ -1,9 +1,8 @@
 RUN /vol/automed/data/uscensus1990/load_tables.pig
 
-state_and_place = 
+state_and_place_city = 
 	JOIN state BY code ,
 		 place BY state_code;
-
 
 state_and_place_city_group = 
 	GROUP state_and_place_city BY
