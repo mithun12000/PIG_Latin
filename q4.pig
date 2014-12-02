@@ -23,10 +23,9 @@ projection_top_five_cities_state =
         GENERATE state::name AS state_name,
                  place::name,
                  population;
- 
---And we order the results
+
 state_name_ordered =
-        ORDER selected_top_five_cities_state
+        ORDER projection_top_five_cities_state
         BY state_name, population DESC;
  
 STORE state_name_ordered INTO 'q4' USING PigStorage(',');
