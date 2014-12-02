@@ -6,7 +6,7 @@ state_and_place =
 
 state_and_place_city = 
 	FILTER state_and_place
-	BY state_and_place.place::type == 'city';
+	BY state_and_place.place::type == city;
 		 
 state_and_place_city_group = 
 	GROUP state_and_place_city BY
